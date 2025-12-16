@@ -1,0 +1,117 @@
+
+<div class="dashboard-container" *ngIf="!loading; else loadingTpl">
+  <h2>📘 {{ courseData.name }}</h2>
+  <h3>Descripción: {{ courseData.description }}</h3>
+
+  <mat-tab-group>
+    <!-- 🅰️ Información general -->
+    <mat-tab label="General">
+
+      <section class="info-section">
+        <h3>📄 Documentos Subidos</h3>
+        <ul>
+          <li *ngFor="let doc of documents">
+            <button mat-icon-button color="primary" (click)="download(doc.id)">
+              <mat-icon>download</mat-icon>
+            </button>
+            <button mat-icon-button color="warm" (click)="openDocument(doc.id)">
+              <mat-icon>preview</mat-icon>
+            </button>
+            <p> {{ doc.name }} </p>
+
+          </li>
+        </ul>
+
+        <h3>🕹️ Actividades y Novedades</h3>
+          <p *ngIf="!loading && news.length === 0">
+            Este curso no tiene novedades todavía.
+          </p>
+         <div *ngFor="let n of news" class="news-card">
+          <p>{{ n.text }}</p>
+          <small>{{ n.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+        </div>
+
+      </section>
+      </mat-tab>
+
+    <!-- 🅲 Calificaciones -->
+    <mat-tab label="Calificaciones y Novedades">
+      <section class="grades-section">
+        <h3>📊 Calificaciones</h3>
+         <!-- Si no hay notas -->
+        <p *ngIf="!grades || grades.length === 0">
+          Aún no tienes calificaciones registradas en este curso.
+        </p>
+
+        <div *ngIf="grades">
+
+      <!-- ACTIVIDADES -->
+      <h4>📝 Actividades</h4>
+
+      <table mat-table [dataSource]="grades.activities" class="table"
+              *ngIf="grades.activities?.length > 0">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Actividad</th>
+            <td mat-cell *matCellDef="let act">{{ act.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="grade">
+            <th mat-header-cell *matHeaderCellDef>Nota</th>
+            <td mat-cell *matCellDef="let act">{{ act.grade }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['name', 'grade']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['name', 'grade'];"></tr>
+        </table>
+
+        <p *ngIf="grades.activities?.length === 0">
+          No tienes actividades calificadas aún.
+        </p>
+
+
+        <!-- EXÁMENES -->
+        <h4>🧪 Exámenes</h4>
+
+        <table mat-table [dataSource]="grades.exams" class="table"
+              *ngIf="grades.exams?.length > 0">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Examen</th>
+            <td mat-cell *matCellDef="let exam">{{ exam.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="grade">
+            <th mat-header-cell *matHeaderCellDef>Nota</th>
+            <td mat-cell *matCellDef="let exam">{{ exam.grade }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['name', 'grade']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['name', 'grade'];"></tr>
+        </table>
+
+        <p *ngIf="grades.exams?.length === 0">
+          No tienes exámenes calificados aún.
+        </p>
+
+      </div>
+
+        <h3>🗞️ Últimas novedades</h3>
+         <p *ngIf="!loading && news.length === 0">
+            Este curso no tiene novedades todavía.
+          </p>
+         <div *ngFor="let n of news" class="news-card">
+          <p>{{ n.text }}</p>
+          <small>{{ n.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+        </div>
+      </section>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading">
+    <mat-icon>hourglass_empty</mat-icon>
+    Cargando información del curso...
+  </div>
+</ng-template>

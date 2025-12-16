@@ -1,0 +1,89 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 1rem;
+  margin-top: 64px;
+  color: #1e3a8a;
+}
+
+.title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.empty {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-top: 2rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 5px solid #3b82f6;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+.card.read {
+  opacity: 0.6;
+  border-left-color: #9ca3af;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.notification-message {
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+.date {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.read-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: bold;
+}
+
+.read-btn:hover {
+  background: #2563eb;
+}
+
+.filter {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+select {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}

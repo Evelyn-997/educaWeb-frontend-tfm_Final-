@@ -1,0 +1,105 @@
+
+<div class="profile-container">
+
+  <!-- Spinner -->
+  <div *ngIf="loading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Error al cargar -->
+  <mat-card *ngIf="!loading && errorMessage" class="error-card">
+    <mat-card-title>Error</mat-card-title>
+    <mat-card-content>{{ errorMessage }}</mat-card-content>
+  </mat-card>
+
+  <!-- Contenido principal -->
+  <mat-card *ngIf="!loading && !errorMessage" class="profile-card">
+
+    <mat-card-header>
+      <mat-card-title>Mi Perfil</mat-card-title>
+      <mat-card-subtitle>Gestiona tu información personal</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form [formGroup]="profileForm">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="lastName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+<!--
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" type="password">
+        </mat-form-field>
+-->
+        <button mat-raised-button color="primary" class="btns"
+                (click)="saveProfile()" [disabled]="profileForm.invalid">
+          Guardar cambios
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <!-- Opciones por rol -->
+    <mat-card-content>
+
+      <div *ngIf="isStudent()">
+        <h3>Opciones de Estudiante</h3>
+
+        <mat-list>
+          <button  mat-list-item routerLink="/student/courses" >
+            <mat-icon matListIcon>menu_book</mat-icon>
+            <span>Mis cursos</span>
+          </button>
+
+           <button mat-list-item routerLink="/notifications" >
+            <mat-icon matListIcon>send</mat-icon>
+            <span>Notificaciones</span>
+          </button>
+
+          <button mat-list-item routerLink="/student/progress" >
+            <mat-icon matListIcon>trending_up</mat-icon>
+            <span>Progreso académico</span>
+          </button>
+        </mat-list>
+      </div>
+
+      <div *ngIf="isTeacher()">
+        <h3>Opciones de Profesor</h3>
+        <mat-list>
+
+          <button  mat-list-item routerLink="/teacher/courses" >
+            <mat-icon matListIcon>menu_book</mat-icon>
+            <span>Gestionar cursos</span>
+          </button>
+
+          <button mat-list-item routerLink="/notifications" >
+            <mat-icon matListIcon>send</mat-icon>
+            <span>Notificaciones</span>
+          </button>
+        </mat-list>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🔹 TEMA GLOBAL (opcional) */
+:root {
+  --primary-blue: #1e3a8a;
+}
+.mat-mdc-dialog-surface,
+.mat-mdc-dialog-container,
+.mat-mdc-drawer-backdrop,
+.mdc-drawer-scrim,
+.mat-sidenav-backdrop,
+.mat-drawer-backdrop {
+  background: transparent !important;
+}

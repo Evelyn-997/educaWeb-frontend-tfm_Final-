@@ -1,0 +1,70 @@
+.edit-container{
+
+  width: 90vw;
+  text-align: center;
+  margin: 2rem;
+  padding: 1rem;
+}
+.course-form-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: #f9fafb;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color:#1e3a8a;
+}
+.student-container{
+  max-width: 100vw;
+  color:#1e3a8a;
+  padding: 15px 15px 15px;
+   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 160px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+}
+button:hover {
+  background-color: #1e3a8a;
+}
+
+ .btn-delete{
+  width: 60px;
+ }
+.add-student-section{
+  justify-content: center;
+  margin: 15px;
+}
+.btns{
+  margin: 2rem;
+  align-items: center;
+  display:flex;
+  gap: 25px;
+  padding-left: 35%;
+  padding-right: 35%;
+}
+

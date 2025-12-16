@@ -1,0 +1,33 @@
+.banner {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 280px;
+  background: #1e3a8a;
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+}
+
+/* Animación */
+.animate {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.message {
+  font-size: 0.9rem;
+}
+

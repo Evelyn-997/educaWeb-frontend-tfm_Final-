@@ -1,0 +1,9 @@
+.access-denied {
+  text-align: center;
+  padding: 3rem;
+  color: #333;
+}
+
+.access-denied h2 {
+  color: #dc2626;
+}

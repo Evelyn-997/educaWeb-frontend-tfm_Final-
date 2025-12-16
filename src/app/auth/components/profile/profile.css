@@ -1,0 +1,66 @@
+.profile-container {
+  margin-top: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color:  #1e3a8a;
+
+}
+mat-card-subtitle{
+  margin-bottom: 15px;
+  color: #1e3a8a;
+}
+
+.profile-card {
+  width: 450px;
+  padding: 1rem;
+  color:#1e3a8a;
+
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 1rem;
+
+}
+
+.spinner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.error-card {
+  width: 400px;
+  text-align: center;
+  color: #b91c1c;
+}
+
+mat-icon{
+  color:  #1e3a8a;
+  padding-right: 10px;
+}
+.btns{
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #3b82f6;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button{
+  border: none;
+  border-radius: 15px;
+}
+button:hover:not(:disabled) {
+  background-color: #1e3a8a;
+}
+
+mat-sidenav-content {
+  position: relative;
+  z-index: 1;
+}

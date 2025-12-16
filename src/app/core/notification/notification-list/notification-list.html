@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 class="title">🔔 Notificaciones</h2>
+
+  <div *ngIf="notifications.length === 0" class="empty">
+    No tienes notificaciones pendientes.
+  </div>
+
+  <div *ngFor="let n of filteredNotifications" class="card" [class.read]="n.read">
+
+    <!-- Icono según tipo -->
+    <div class="icon">
+      <span *ngIf="n.type === 'DOCUMENT'">📄</span>
+      <span *ngIf="n.type === 'MESSAGE'">💬</span>
+      <span *ngIf="n.type === 'SYSTEM'">⚙️</span>
+      <span *ngIf="n.type === 'ALERT'">⚠️</span>
+    </div>
+
+    <div class="content">
+      <div class="notification-title">{{ n.title }}</div>
+      <div class="notification-message">{{ n.message }}</div>
+      <div class="date">{{ n.createdAt | date:'short' }}</div>
+    </div>
+    <div class="filter">
+    <label>Filtrar por tipo:</label>
+    <select [(ngModel)]="filterType">
+      <option value="ALL">Todas</option>
+      <option value="DOCUMENT">Documentos</option>
+      <option value="MESSAGE">Mensajes</option>
+      <option value="ALERT">Alertas</option>
+      <option value="SYSTEM">Sistema</option>
+    </select>
+  </div>
+
+
+    <!-- Botón marcar como leído -->
+    <button *ngIf="!n.read" class="read-btn" (click)="markAsRead(n)">
+      Marcar como leída
+    </button>
+
+  </div>
+</div>
+

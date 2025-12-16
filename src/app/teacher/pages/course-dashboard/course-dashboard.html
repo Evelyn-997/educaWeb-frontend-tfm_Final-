@@ -1,0 +1,157 @@
+
+<div class="dashboard-container" *ngIf="!loading; else loadingTpl">
+  <h2>📘 {{ courseData.name }}</h2>
+  <p><strong>Descripción:</strong> {{ courseData.description }}</p>
+
+  <div class="course-info">
+    <mat-tab-group>
+      <!-- Información general -->
+      <mat-tab label="General">
+
+        <section class="info-section">
+          <h3>📄 Documentos Subidos</h3>
+          <ul>
+            <li *ngFor="let doc of documents">
+              <mat-icon (click)="openDocument(doc.id)">description</mat-icon>
+              {{ doc.name }}
+            </li>
+          </ul>
+
+          <h3>🕹️ Actividades y Novedades</h3>
+           <!-- ➕ Añadir novedad -->
+        <form [formGroup]="newForm" (ngSubmit)="addNews()" class="novedad-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nueva novedad</mat-label>
+            <input matInput formControlName="text" placeholder="Ej: Examen el viernes">
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit"
+                  [disabled]="newForm.invalid" class="publish-btn">
+            Publicar
+          </button>
+        </form>
+
+        <!-- LISTADO -->
+         <p *ngIf="!loading && news.length === 0">
+            Este curso no tiene novedades todavía.
+          </p>
+         <div *ngFor="let n of news" class="news-card">
+          <p>{{ n.text }}</p>
+          <small>{{ n.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+        </div>
+        </section>
+        </mat-tab>
+
+      <!-- Participantes -->
+      <mat-tab label="Participantes">
+        <section class="participants-section">
+          <h3>👩‍🏫 Profesor: </h3>
+          <p>{{ courseData.teacherName }}</p>
+
+          <h3>👩‍🎓 Estudiantes Matriculados</h3>
+          <table mat-table [dataSource]="courseData.students || []" class="table">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>ID</th>
+              <td mat-cell *matCellDef="let s">{{ s.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let s">{{ s.studentName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let s">{{ s.email }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['id', 'name', 'email']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'email'];"></tr>
+          </table>
+        </section>
+      </mat-tab>
+
+      <!-- 🅲 Calificaciones -->
+      <mat-tab label="Calificaciones y Novedades">
+        <section class="grades-section">
+          <h3>📊 Calificaciones</h3>
+
+          <!-- Si no hay notas-->
+          <p *ngIf="!grades || !grades.activities">Aún no tienes calificaciones registradas.</p>
+
+          <table mat-table [dataSource]="students || []" class="table">
+
+            <ng-container matColumnDef="student">
+              <th mat-header-cell *matHeaderCellDef>Alumno</th>
+              <td mat-cell *matCellDef="let s">{{ s.studentName }}</td>
+            </ng-container>
+          <!-- ACTIVIDADES -->
+            <ng-container matColumnDef="activities">
+              <th mat-header-cell *matHeaderCellDef>Actividades</th>
+              <td mat-cell *matCellDef="let s">
+
+                <div *ngFor="let act of s.activities; let i = index" class="activity-row">
+                  <input type="text" placeholder="Nombre actividad" [(ngModel)]="act.name">
+                  <input type="number" placeholder="0-10" min="0" max="10" [(ngModel)]="act.grade">
+                  <button mat-icon-button color="warn" (click)="removeActivity(s, i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                <button mat-button color="primary" (click)="addActivity(s)" class="add">
+                  Añadir actividad
+                </button>
+              </td>
+            </ng-container>
+          <!-- EXÁMENES -->
+            <ng-container matColumnDef="exams">
+              <th mat-header-cell *matHeaderCellDef>Examen</th>
+              <td mat-cell *matCellDef="let s">
+
+                 <div *ngFor="let ex of s.exams; let j = index" class="exam-row">
+                  <input type="text" placeholder="Nombre examen" [(ngModel)]="ex.name">
+                  <input type="number" placeholder="0-10" min="0" max="10" [(ngModel)]="ex.grade">
+                  <button mat-icon-button color="warn" (click)="removeExam(s, j)" >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                <button mat-button color="accent" (click)="addExam(s)" class="add">
+                  Añadir examen
+                </button>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Acción</th>
+              <td mat-cell *matCellDef="let s">
+                <button mat-raised-button color="primary" (click)="saveGrade(s)">
+                  Guardar
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['student', 'activities','exams','actions']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['student', 'activities','exams','actions'];"></tr>
+
+          </table>
+
+          <h3>🗞️ Últimas novedades</h3>
+           <p *ngIf="!loading && news.length === 0">
+            Este curso no tiene novedades todavía.
+          </p>
+         <div *ngFor="let n of news" class="news-card">
+          <p>{{ n.text }}</p>
+          <small>{{ n.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+        </div>
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading">
+    <mat-icon>hourglass_empty</mat-icon>
+    Cargando información del curso...
+  </div>
+</ng-template>

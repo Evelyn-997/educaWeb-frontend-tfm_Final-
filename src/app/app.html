@@ -1,0 +1,19 @@
+<div class="layout">
+
+  <!-- Notificaciones flotantes -->
+  <app-notification-banner *ngIf="isLogged()"></app-notification-banner>
+
+  <!-- Header de la página de inicio -->
+  <app-header *ngIf="isHome()"></app-header>
+  <!-- Contenedor del header (SE INYECTA dinámicamente por cada módulo) -->
+  <app-header-student *ngIf="isStudent()"></app-header-student>
+  <app-header-teacher *ngIf="isTeacher()"></app-header-teacher>
+    <!-- Contenido principal -->
+  <main>
+     <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+
+</div>

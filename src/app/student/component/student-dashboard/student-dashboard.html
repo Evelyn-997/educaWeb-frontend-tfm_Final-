@@ -1,0 +1,25 @@
+
+<div class="dashboard-container">
+  <h2>Hola {{ studentName }} 🤝</h2>
+
+  <div class="courses-container" *ngIf="courses.length > 0">
+    <div *ngIf="!loading && courses.length === 0">
+      <p>No estás matriculado en ningún curso todavía.</p>
+    </div>
+    <div class="course-list" >
+      <mat-card *ngFor="let course of courses" class="course-card">
+        <mat-card-content>
+          <p><strong>{{ course.name }}</strong></p>
+          <p><strong> Descripción: </strong>{{ course.description }}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="actions">
+          <button mat-raised-button color="primary"[routerLink]="['/student/course', course.id]" class="add-button">
+          Entrar
+        </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

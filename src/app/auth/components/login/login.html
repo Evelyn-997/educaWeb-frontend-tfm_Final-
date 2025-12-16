@@ -1,0 +1,48 @@
+
+<app-header></app-header>
+
+<div class="page-container">
+  <div class="auth-container">
+  <div class="auth-card">
+    <h2>Iniciar Sesión</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="username">Usuario:</label>
+        <input
+          type="username"
+          id="username"
+          formControlName="username"
+          placeholder="Tu usuario"
+        />
+        <small *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          Introduce un usuario válido
+        </small>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="••••••••"
+        />
+        <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          La contraseña debe tener al menos 6 caracteres
+        </small>
+      </div>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+    </form>
+
+    <div class="links">
+      <a routerLink="/register">¿No tienes cuenta? Regístrate</a>
+      <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+    </div>
+  </div>
+</div>
+</div>
+

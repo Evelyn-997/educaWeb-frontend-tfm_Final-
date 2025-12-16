@@ -1,0 +1,40 @@
+<!-- CONTENIDO GENERAL -->
+<div class="home-container">
+    <!-- Hero -->
+    <section class="hero">
+      <img src="assets/img/logo2.png"  class="hero-logo" >
+      <h1>🎓 Bienvenidos a {{title}}</h1>
+      <p>Una plataforma educativa para aprender, enseñar y compartir.</p>
+      <!-- <div class="hero-buttons">
+        <a mat-raised-button color="primary" routerLink="/login">Comenzar ahora</a>
+        <a mat-stroked-button color="accent" routerLink="/register">Crear cuenta</a>
+      </div> -->
+    </section>
+
+    <!-- Funcionalidades -->
+    <section id="features" class="features">
+      <h2>🌟 Funcionalidades principales</h2>
+      <div class="card-container">
+        <mat-card routerLink="/teacher" class="feature-card">
+          <h3 >👨‍🏫 Profesores</h3>
+          <mat-card-content> Crea cursos, sube documentos y comunica con los estudiantes.</mat-card-content>
+        </mat-card>
+        <mat-card routerLink="/student" class="feature-card">
+          <h3  >🎓 Estudiantes</h3>
+          <mat-card-content> Accede a tus clases y recibe avisos en tiempo real.</mat-card-content>
+        </mat-card>
+        <mat-card class="feature-card">
+          <h3>🔒 Autenticación segura</h3>
+          <mat-card-content>Autenticación segura con tokens de acceso y refresh.</mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contact" class="contact">
+      <h2>📬 Contáctanos</h2>
+      <p>¿Tienes dudas o sugerencias? Escríbenos a <b>soporte@educaweb.com</b></p>
+      <p class="email">soporte@educaweb.com</p>
+    </section>
+</div>
+

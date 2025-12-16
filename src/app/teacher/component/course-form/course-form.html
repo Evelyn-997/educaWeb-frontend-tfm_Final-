@@ -1,0 +1,73 @@
+
+<mat-card class="form-card">
+  <h2 class="title">📘 Crear nuevo curso</h2>
+
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()"  novalidate>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label class="subtitle">Nombre del curso: </mat-label>
+        <input matInput formControlName="name" id="name" placeholder="Ej. Matematicas 1º ESO"/>
+        <mat-error *ngIf="courseForm.get('name')?.invalid && courseForm.get('name')?.touched">
+          El nombre es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label class="subtitle">Codigo del curso: </mat-label>
+        <input matInput formControlName="code" placeholder="Ej. MAT1ESO"/>
+        <mat-error *ngIf="courseForm.get('code')?.invalid && courseForm.get('code')?.touched">
+          El codigo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label class="subtitle" >Descripcion del curso: </mat-label>
+        <textarea matInput formControlName="description" rows="5"></textarea>
+      </mat-form-field>
+
+      <div class="buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">
+           <mat-icon>save</mat-icon> Guardar
+        </button>
+        <button mat-button color="warn" routerLink="/teacher/courses">
+          <mat-icon>cancel</mat-icon> Cancelar
+        </button>
+      </div>
+    </form>
+
+</mat-card>
+
+<!--
+<div class="form-card">
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <!- Nombre del curso  ->
+      <div class="form-group">
+        <label for="name">Nombre del curso: </label>
+        <input type="text" id="name" formControlName="name" placeholder="Ej. Matematicas 1º ESO"/>
+        <small  class="error" *ngIf="courseForm.get('name')?.invalid && courseForm.get('name')?.touched">
+          El nombre es obligatorio
+        </small>
+      </div>
+
+      <!- Codigo del curso  ->
+      <div class="form-group">
+        <label for="code">Código:</label>
+        <input type="text" id="code" formControlName="code" placeholder="MAT1ESO" />
+        <small *ngIf="courseForm.get('code')?.invalid && courseForm.get('code')?.touched">
+          El código es obligatorio
+        </small>
+      </div>
+
+      <!-Descripcion del curso  ->
+      <div class="form-group">
+        <label for="description">Descripción del curso:</label>
+        <textarea type="text" id="description" formControlName="description" rows="10" ></textarea>
+      </div>
+      <!- Boton  ->
+      <div class="buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">GUARDAR</button>
+        <button mat-stroked-button  routerLink="/teacher/courses">CANCELAR</button>
+      </div>
+    </form>
+
+</div> -->

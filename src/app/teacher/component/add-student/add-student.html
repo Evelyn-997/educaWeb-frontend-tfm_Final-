@@ -1,0 +1,72 @@
+
+<div class="add-student-container">
+  <h2>👩‍🎓 Añadir alumno a curso</h2>
+  <div class="form-container">
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <label>ID del estudiante:</label>
+      <input formControlName="studentId" type="text" placeholder="Ej. 20441" (input)="onSearchStudent()" />
+      <div class="btns">
+        <button type="submit" [disabled]="addForm.invalid || isTeacher || alreadyInCourse">Añadir alumno</button>
+        <button mat-stroked-button routerLink="/teacher/courses">Volver</button>
+      </div>
+    </form>
+
+    <!-- Alumno no encontrado -->
+    <div *ngIf="studentNotFound && !isSearching" class="student-info">
+      <p style="color:red; font-weight:bold;">No se encontró ningún alumno con ese ID</p>
+    </div>
+    <!-- Aviso si el usuario es TEACHER -->
+    <div *ngIf="isTeacher" style="color:red; font-weight:bold;">
+      ❌ Este usuario tiene rol PROFESOR. No se puede añadir al curso.
+    </div>
+    <!-- Aviso si ya pertenece al curso -->
+    <div *ngIf="alreadyInCourse" style="color:orange; font-weight:bold;">
+      ⚠️ Este alumno ya está matriculado en este curso.
+    </div>
+
+    <div *ngIf="selectedStudent && !isTeacher && !alreadyInCourse " class="student-info">
+      <h3>👤 Datos del alumno:</h3>
+      <p><strong>Nombre:</strong> {{ selectedStudent.studentName }}</p>
+      <p><strong>Usuario:</strong> {{ selectedStudent.username }}</p>
+      <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
+      <p><strong>Nº de matricula:</strong> {{ selectedStudent.enrollmentNumber}}</p>
+    </div>
+  </div>
+
+  <div  class="students-info">
+    <mat-tab-group>
+      <!-- Participantes -->
+        <mat-tab label="Participantes">
+        <section class="participants-section">
+
+          <h3>👩‍🎓 Estudiantes Matriculados</h3>
+          <table mat-table [dataSource]="courseData?.students || []" class="table">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>ID</th>
+              <td mat-cell *matCellDef="let s">{{ s.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let s">{{ s.studentName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let s">{{ s.email }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="enrollmentNumber">
+              <th mat-header-cell *matHeaderCellDef>N. de matricula</th>
+              <td mat-cell *matCellDef="let s">{{ s.enrollmentNumber }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['id', 'name', 'email','enrollmentNumber']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'email','enrollmentNumber'];"></tr>
+          </table>
+        </section>
+      </mat-tab>
+  </mat-tab-group>
+</div>
+
+

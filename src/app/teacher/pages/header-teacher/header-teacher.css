@@ -1,0 +1,78 @@
+.header-teacher .main-container,
+mat-sidenav-container {
+  display: flex;
+  background: transparent;
+  min-width: min-content;
+}
+.header-teacher .logo{
+  height: 40px;
+  object-fit: contain;
+}
+.header-teacher .toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #1e3a8a;
+  color: white;
+  display: flex;
+  align-items: center;
+  z-index: 30; /* Asegura que el toolbar esté por encima de otros elementos */
+}
+.header-teacher .toolbar-title {
+  font-weight: bold;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+.header-teacher .menu-icon {
+  margin-right: 10px;
+  color: #1e3a8a;
+}
+.header-teacher .menu-btn{
+  color:white;
+  background-color: #3b5dbd;
+  margin-right: 10px;
+}
+.header-teacher .sidenav {
+  width: 220px;
+  background-color: white;
+  position: fixed;   /* SUPERPONER */
+  top: 64px;         /* Alineado con el header */
+  bottom: 0;
+  left: 0;
+  z-index: 2000;     /* Debe ir por encima del contenido */
+  margin-top: 0;     /* <-- IMPORTANTE */
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.2);
+}
+
+.header-teacher mat-nav-list {
+  gap: 8px;
+  padding: 10px;
+  display:flex;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  }
+.header-teacher mat-nav-list a {
+  color: #1e3a8a;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 12px;
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  text-decoration:none;
+}
+.header-teacher mat-nav-list a:hover {
+  background: #e8eefc;
+}
+.header-teacher .spacer {
+  flex: 1 1 auto;
+}
+.header-teacher.main-content {
+  padding: 1.5rem;
+  height: calc(20h);
+  overflow-y: auto;
+  background: #f8f9fc;
+  overflow: hidden;
+}

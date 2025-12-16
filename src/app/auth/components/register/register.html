@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Crear cuenta</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="name">Nombre </label>
+        <input type="text" id="name" formControlName="name" placeholder="Tu nombre" />
+        <small *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+          El nombre es obligatorio
+        </small>
+      </div>
+
+      <!-- Apellido -->
+      <div class="form-group">
+        <label for="lastName">Apellidos</label>
+        <input type="text" id="lastName" formControlName="lastName" placeholder="Tu apellido" />
+        <small *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+          El Apellido es obligatorio
+        </small>
+      </div>
+
+      <!-- Usuario -->
+      <div class="form-group">
+        <label for="username">Usuario</label>
+        <input type="text" id="username" formControlName="username" placeholder="Usuario" />
+        <small *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+          El Usuario es obligatorio
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" formControlName="email" placeholder="ejemplo@correo.com" />
+        <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Introduce un correo válido
+        </small>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Mínimo 8 caracteres, una mayúscula y un número"
+        />
+        <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          Contraseña no cumple los requisitos
+        </small>
+      </div>
+
+      <!-- Rol -->
+      <div class="form-group">
+        <label for="role">Rol</label>
+        <select id="role" formControlName="role">
+          <option value="STUDENT">Estudiante</option>
+          <option value="TEACHER">Profesor</option>
+        </select>
+      </div>
+
+      <!-- Nº de Matricula -->
+      <!-- <div  class="form-group" *ngIf="enrollmentNumber && role === 'STUDENT'" class="matricula">
+        <p><strong>¡Registro completado!</strong></p>
+        <p>Tu número de matrícula: <strong>{{ enrollmentNumber }}</strong></p>
+      </div> -->
+
+      <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+    </form>
+
+    <div class="links">
+      <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+
+  </div>
+</div>
+
+
+

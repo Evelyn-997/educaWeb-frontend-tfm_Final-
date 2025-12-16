@@ -1,0 +1,37 @@
+<div class="header-teacher">
+<mat-sidenav-container class="main-container">
+   <!-- MENÚ LATERAL -->
+  <mat-sidenav #sidenav [(opened)]="isSidenavOpen" mode="over" class="sidenav" position="start">
+    <mat-nav-list>
+        <a mat-list-item routerLink="/teacher/courses" (click)="closeSidenav()">📘 Mis cursos</a>
+        <a mat-list-item routerLink="/notifications" (click)="sidenav.close()">🔔 Notificaciones</a>
+        <a mat-list-item routerLink="/teacher/profile" (click)="sidenav.close()">👤 Mi perfil</a>
+        <a mat-list-item routerLink="/login" (click)="sidenav.close()"> 🔒Cerrar Sesión</a>
+    </mat-nav-list>
+  </mat-sidenav>
+    <!-- Contenido principal -->
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <button mat-icon-button (click)="toggleSidenav()" class="menu-btn">
+        <mat-icon >account_circle</mat-icon>
+      </button>
+      <!-- Título -->
+      <span class="toolbar-title" mat-list-item>Área Profesor - EducaWeb</span>
+      <img src="assets/img/logo2.png" alt="Logo EducaWeb" class="logo">
+      <span class="spacer"></span>
+       <!-- Notificaciones -->
+      <div class="notif-wrapper" routerLink="/notifications">
+        <span class="bell">🔔</span>
+        <span class="badge" *ngIf="unreadCount > 0">
+          {{ unreadCount }}
+        </span>
+      </div>
+    </mat-toolbar>
+
+    <main class="main-content">
+      <ng-content></ng-content>
+    </main>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

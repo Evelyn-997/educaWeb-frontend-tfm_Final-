@@ -1,0 +1,77 @@
+
+<ng-template #loadingTpl>
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+    <p>Cargando datos del curso...</p>
+  </div>
+</ng-template>
+
+<div class="edit-container">
+  <div class="course-form-container" *ngIf="!loading; else loadingTpl">
+  <h2>✏️ Editar curso</h2>
+
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <label>Nombre:</label>
+    <input formControlName="name" type="text" />
+
+    <label>Código:</label>
+    <input formControlName="code" type="text" />
+
+    <label>Descripción:</label>
+    <textarea formControlName="description"></textarea>
+  </form>
+  </div>
+  <div class="student-container">
+      <!-- 🔹 Sección de estudiantes -->
+    <h3>👩‍🎓 Estudiantes matriculados</h3>
+    <table *ngIf="courseData.students && courseData.students.length > 0" mat-table
+    [dataSource]="courseData.students" class="student-table">
+      <!-- 🔹 ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let s">{{ s.id }}</td>
+    </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let s">{{ s.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+        <td mat-cell *matCellDef="let s">{{ s.lastName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let s">{{ s.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let s">{{ s.username }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let s">
+        <button mat-icon-button color="warn" (click)="removeStudents(s.id)" class="btn-delete">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <!-- filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+  </div>
+  <div class="btns">
+      <button mat-raised-button color="primary" (click)="addStudent()">Añadir estudiante</button>
+      <button type="submit" [disabled]="courseForm.invalid">Guardar cambios</button>
+      <button mat-stroked-button routerLink="/teacher/courses">Volver</button>
+  </div>
+</div>
+
+
+
+

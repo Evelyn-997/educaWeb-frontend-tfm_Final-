@@ -1,0 +1,34 @@
+<div class="header-general">
+ <mat-sidenav-container class="main-container">
+  <!-- Menú lateral -->
+  <mat-sidenav #sidenav [(opened)]="isSidenavOpen" mode="over" class="sidenav" position="start">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">🏠 Inicio</a>
+      <a mat-list-item routerLink="/login" (click)="sidenav.close()">🔐 Iniciar sesión</a>
+      <a mat-list-item routerLink="/register" (click)="sidenav.close()">🧾 Registrarse</a>
+      <!-- <a mat-list-item href="#features" (click)="sidenav.close()">💡 Funcionalidades</a>
+      <a mat-list-item href="#contact" (click)="sidenav.close()">📬 Contacto</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+   <!-- Contenido principal -->
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <button mat-icon-button (click)="toggleSidenav()" class="menu-btn">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="toolbar-title">EducaWeb</span>
+      <img src="assets/img/logo2.png" alt="Logo EducaWeb" class="logo">
+      <span class="spacer"></span>
+
+      <!-- Botones en desktop -->
+      <div class="toolbar-links">
+        <a mat-button routerLink="/login">Iniciar sesión</a>
+        <a mat-raised-button color="accent" routerLink="/register">Registrarse</a>
+      </div>
+    </mat-toolbar>
+    <ng-content></ng-content>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

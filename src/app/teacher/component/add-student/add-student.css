@@ -1,0 +1,70 @@
+.add-student-container {
+  width: 90vw;
+  margin-top: 65px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  align-items: center;
+  z-index: 0;
+}
+.form-container {
+  margin-top: 1rem;
+ /* display: flex;*/
+  width: 350px;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 95%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+
+}
+mat-tab-group{
+  margin-top: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+
+}
+/*
+.students-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  width: 90vw;
+}
+ */
+
+button {
+  margin-top: 1.5rem;
+  width: 50%;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #1e3a8a;
+}
+
+.btns{
+  align-items: center;
+  display:flex;
+  gap: 25px;
+}
+
+

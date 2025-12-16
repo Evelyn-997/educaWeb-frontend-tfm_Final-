@@ -1,0 +1,54 @@
+
+<div *ngIf="loading">
+  <p>Cargando progreso académico...</p>
+</div>
+
+<div class="progress-container" *ngIf="!loading">
+
+  <h1>Progreso académico</h1>
+
+  <!-- Sin cursos -->
+  <div *ngIf="!loading && courseIds.length === 0" class="warning-message">
+    <h3>⚠️ No tienes notas disponibles.</h3>
+  </div>
+
+  <mat-card *ngFor="let courseId of courseIds" class="course-card"
+              [ngClass]="getProgressColorClass(progressMap[courseId].gradeAverage)">
+
+    <h2>📘 Curso: {{ courseNames[courseId] }}</h2>
+    <p class="globalGrade">
+      <strong>Nota media global :</strong>
+      {{ progressMap[courseId].gradeAverage }}
+    </p>
+
+    <mat-progress-bar
+      class="thick-progress"
+      mode="determinate"
+      [value]="progressMap[courseId].gradeAverage * 10">
+    </mat-progress-bar>
+    <!-- Indicador de riesgo -->
+    <p class="risk">
+      {{ getRiskLabel(progressMap[courseId].gradeAverage) }}
+    </p>
+    <!-- Actividades -->
+    <div *ngIf="progressMap[courseId].activityGrades.length > 0">
+      <h3>📝 Actividades</h3>
+      <ul>
+        <li *ngFor="let a of progressMap[courseId].activityGrades">
+          {{ a.name }} — {{ a.grade }}
+        </li>
+      </ul>
+    </div>
+    <!-- Exámenes -->
+    <div *ngIf="progressMap[courseId].examGrades.length > 0">
+      <h3>📕 Exámenes</h3>
+      <ul>
+        <li *ngFor="let e of progressMap[courseId].examGrades">
+          {{ e.name }} — {{ e.grade }}
+        </li>
+      </ul>
+    </div>
+
+  </mat-card>
+
+</div>

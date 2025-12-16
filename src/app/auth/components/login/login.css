@@ -1,0 +1,85 @@
+.page-container{
+  min-height: calc(50vh - 64px);
+  padding-top: 64px; /* SEGURO Y NECESARIO SI EL HEADER ES FIXED */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-container {
+  min-height: calc(30vh - 64px);
+  padding-top: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  width: 450px;
+  padding: 2rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 5px 5px rgba(92, 120, 209, 0.116);
+}
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+input,
+select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #3b82f6;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.links {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.links a {
+  color: #3b82f6;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: block;
+}
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}

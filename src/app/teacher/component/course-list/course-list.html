@@ -1,0 +1,38 @@
+<div class="courses-container">
+  <h1>📘 Mis cursos </h1>
+
+  <div class="cards-wrapper">
+    <mat-card *ngFor="let course of courses" class="course-card" (click)="goToDashboard(course)">
+      <mat-card-header>
+        <mat-card-title><strong>{{ course.name }}</strong></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong> Descripción:</strong>{{ course.description }}</p>
+        <p><strong>ID:</strong> {{ course.id }}</p>
+        <p><strong>Código:</strong> {{ course.code }}</p>
+      </mat-card-content>
+      <!-- Acciones -->
+      <mat-card-actions class="actions">
+        <button mat-icon-button color="primary" [routerLink]="['/teacher/courses/edit', course.id]" (click)="$event.stopPropagation()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteCourse(course.id); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="viewStudents(course.id); $event.stopPropagation()">
+          <mat-icon>group</mat-icon>
+        </button>
+        <label class="upload-btn">
+          <button mat-icon-button color="primary" [routerLink]="['/teacher/courses/',course.id,'documents']" (click)="$event.stopPropagation()">
+            <mat-icon>cloud_upload</mat-icon>
+          </button>
+        </label>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="add-btn">
+    <button type="submit" color="primary" routerLink="/teacher/courses/new"> Nuevo Curso</button>
+
+  </div>
+</div>

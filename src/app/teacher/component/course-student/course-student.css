@@ -1,0 +1,141 @@
+/*
+.student-card {
+  width: 550px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.student-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+}
+.student-info {
+  flex: 1;
+  text-align: left;
+  margin-left: 0.8rem;
+}
+
+
+.student-name {
+  margin: 0;
+  font-size: 1.0rem;
+  font-weight: 600;
+}
+.student-email {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+*/
+/* Elimina efectos heredados no deseados */
+.student-container {
+  width: 95vw;
+  padding: 1.5rem;
+}
+.student-card {
+  margin-top: 65px;
+  width:90vw;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.filter-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.filter-input {
+  width: 60%;
+}
+/* Tabla */
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th.mat-header-cell {
+  background-color: #1e3a8a;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+td.mat-cell {
+  text-align: center;
+  padding: 0.7rem;
+  font-size: 0.95rem;
+}
+
+tr.mat-row:hover {
+  background-color: #f0f4ff;
+}
+
+mat-icon {
+  vertical-align: middle;
+  width: 24px;
+}
+
+button.btn-delete mat-icon {
+  cursor: pointer;
+
+}
+/* button{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.1rem;
+  width: 90%;
+  padding: 0.9rem;
+  background-color: #1e3a8a;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+
+
+} */
+ button {
+
+  width: 160px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+}
+button:hover {
+  background-color: #1e3a8a;
+}
+.btn{
+  padding-left: 35%;
+  padding-right: 35%;
+  margin: 2rem;
+  align-items: center;
+  display:flex;
+  gap: 25px;
+}
+.btn-delete{
+  width: 60px;
+ }
+
+

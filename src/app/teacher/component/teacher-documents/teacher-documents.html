@@ -1,0 +1,63 @@
+
+<div class="documents-container">
+  <h2>📚 Documentos del curso "{{ courseName }}":</h2>
+
+  <!--  Subida de documentos -->
+  <div class="upload-section">  <!--*ngIf="selectedCourseId"> -->
+    <p>📤 Arrastra o selecciona documentos para subir:</p>
+    <input type="file" multiple (change)="onFileSelected($event)">
+    <button (click)="upload()">Subir documentos</button>
+     <span *ngIf="selectedFile.length">({{selectedFile.length}} archivos seleccionados)</span>
+  </div>
+
+  <!--  Tabla de documentos -->
+  <table class="documents-table" *ngIf="documents.length > 0; else noDocs">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Versión</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of documents">
+        <!-- <td>{{ doc.name }}</td> -->
+         <td>
+          <ng-container *ngIf="renameMap[doc.id] === undefined; else renaming">
+            {{ doc.name }}
+          </ng-container>
+          <ng-template #renaming>
+            <input [(ngModel)]="renameMap[doc.id]" />
+          </ng-template>
+        </td>
+        <td>{{ doc.version }}</td>
+        <td>{{ doc.uploadDate | date }}</td>
+        <td class="actions">
+          <ng-container *ngIf="renameMap[doc.id] === undefined; else renameBtns">
+            <button (click)="openDocument(doc)">👁️ Ver</button>
+            <button (click)="downloadDocument(doc)">💾 Descargar</button>
+            <button (click)="queueRename(doc)">✏️ Renombrar</button>
+            <button (click)="deleteDocument(doc.id)">🗑️ Eliminar</button>
+          </ng-container>
+          <ng-template #renameBtns>
+            <button (click)="saveRename(doc)">💾 Guardar</button>
+            <button (click)="cancelRename(doc)">✖ Cancelar</button>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--  Mensaje si no hay documentos -->
+  <ng-template #noDocs>
+    <p class="no-docs">📂 No hay documentos en este curso.</p>
+  </ng-template>
+
+  <!--  Vista previa -->
+  <div *ngIf="previewUrl" class="preview-modal">
+    <button class="close-btn" (click)="closePreview()">✖</button>
+    <iframe [src]="previewUrl" width="100%" height="500px"></iframe>
+  </div>
+
+  <button mat-button color="warn" routerLink="/teacher/courses"> Volver</button>
+</div>

@@ -1,0 +1,100 @@
+
+.noProgress {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #1e3a8a;
+}
+.info-message {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #e0f2fe;
+  color: #075985;
+  border-radius: 6px;
+}
+
+.warning-message {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 6px;
+}
+
+
+button {
+  width: 60px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #1e3a8a;
+  align-items: center;
+}
+button:hover {
+  background-color:#3b82f6;
+}
+mat-icon {
+  display:flex;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  padding-left: 10px;
+}
+
+.progress-container {
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  width: 90vw;
+}
+
+.course-card {
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  border-left: 8px solid transparent;
+}
+h3, p{
+  padding-left: 10px;
+
+}
+.globalGrade{
+  font-size: 20px;
+}
+/*Buen progreso */
+.course-card.success {
+  border-left-color: #16a34a;
+  background: #f0fdf4;
+}
+
+/*Riesgo moderado */
+.course-card.warning {
+  border-left-color: #facc15;
+  background: #fefce8;
+}
+/*Riesgo alto */
+.course-card.danger {
+  border-left-color: #dc2626;
+  background: #fef2f2;
+}
+.risk {
+  font-size: 16px;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.thick-progress,
+.thick-progress ::ng-deep .mat-progress-bar-fill::after,
+.thick-progress ::ng-deep .mat-progress-bar-buffer {
+  height: 18px;
+  border-radius: 210px;
+}
+
+ul {
+  padding-left: 40px;
+}
+
+li {
+  font-size: 0.9rem;
+  padding: 0.25rem 0;
+}

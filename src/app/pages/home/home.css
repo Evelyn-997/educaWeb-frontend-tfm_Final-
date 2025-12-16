@@ -1,0 +1,147 @@
+/* 🔹 Contenedor general */
+.home-container {
+  height: 100%;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 1.5rem;
+}
+
+/* 🔹 Hero section */
+.hero {
+  /*background: linear-gradient(135deg, #3b82f6, #2563eb);*/
+  width: 100%;
+  max-width: 950px;
+  color: #1e3a8a;
+  text-align: center;
+  /* padding: 5rem 1rem 3rem; */
+  padding: 0.5rem 1rem;
+
+}
+.hero-logo{
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+}
+
+.hero-buttons {
+  /* margin: 0 0.5rem; */
+  color: #1e3a8a;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+
+}
+/* HERO responsive */
+@media (max-width: 650px) {
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* 🔹 Features section */
+.features {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  color: #1e3a8a;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap:nowrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.feature-card {
+  font-size: 1rem;
+  width: 260px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔹 Contact section */
+.contact {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #1e3a8a;
+}
+.email {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 0.3rem;
+  color: #2563eb;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 650px) {
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Sidenav del header-home como panel flotante
+.sidenav {
+  width: 250px;
+  background-color: #ffffff !important;
+  border-radius: 12px;
+  margin-top: 10px;
+  margin-left: 8px;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}*/
+
+/* Eliminar overlay negro
+.mat-drawer-shown .mat-drawer-backdrop {
+  background-color: transparent !important;
+}*/
+/* Mejor estilo para ítems del menú
+mat-nav-list a {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #1e3a8a !important;
+}
+
+mat-nav-list a:hover {
+  background-color: rgba(30, 58, 138, 0.08);
+}*/
+
+/* El contenedor interno sin scroll raro
+.mat-drawer-inner-container {
+  height: auto !important;
+  padding: 1rem 0 !important;
+} */
+
