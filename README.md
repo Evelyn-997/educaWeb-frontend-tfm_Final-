@@ -1,59 +1,99 @@
-# Educaweb
+# EducaWeb – Frontend (TFM)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+## Descripción
+Frontend de la plataforma web educativa EducaWeb, desarrollado en Angular
+como parte del Trabajo Fin de Máster.
 
-## Development server
+---
 
-To start a local development server, run:
+## Arquitectura general del proyecto
 
+| Componente          | Tecnología utilizada                         |
+| ------------------- | -------------------------------------------- |
+| Backend             | Java + Spring Boot + Spring Security         |
+| Frontend            | Angular + Bootstrap                          |
+| Base de datos       | MySQL                                        |
+| Autenticación       | JWT (JSON Web Tokens)                        |
+| Gestión de archivos | Almacenamiento local                         |
+| Notificaciones      | WebSockets / Email                           |
+| Testing             | JUnit + Postman (API)                        |
+| Despliegue          | Docker + GitHub                              |
+
+> Este repositorio corresponde únicamente al **Frontend** del sistema.
+
+---
+
+## Tecnologías utilizadas (Frontend)
+- Angular  
+- TypeScript  
+- Bootstrap  
+- HTML5 y CSS3  
+- RxJS  
+- Angular Router  
+- JWT para autenticación basada en tokens  
+
+---
+
+### 2. Funcionalidades para el ALUMNADO
+
+#### Registro e inicio de sesión seguro 
+- Formulario de registro con rol de estudiante
+- Inicio de sesión con validaciones de seguridad
+
+#### Inscripción a cursos/grupos
+- Pantalla con listado de cursos disponibles
+- Botón de inscripción y visualización de la descripción
+- Vista de los cursos en los que el estudiante está inscrito
+
+#### Acceso a documentos
+- Listado de documentos disponibles por curso
+- Opción de descarga y vista previa
+- Indicador visual de “nuevo documento”
+
+#### Recepción de notificaciones
+- Notificaciones en tiempo real
+- Banner o alerta al recibir nuevas notificaciones
+- Sección dedicada para consultar todas las notificaciones
+
+#### Historial de notificaciones
+- Página con listado ordenado por fecha
+- Filtros por tipo (mensaje, aviso, documento)
+- Opción de marcar notificaciones como leídas o no leídas
+---
+
+### 3. Funcionalidades comunes
+
+#### Dashboard inicial personalizado
+- Profesorado: visualización de cursos impartidos y últimas acciones
+- Alumnado: cursos inscritos y notificaciones recientes
+
+#### Gestión del perfil
+- Edición de datos personales
+- 
+#### Seguridad y usabilidad 
+- Gestión de sesión mediante JWT con renovación automática
+- Redirección según el rol (profesor o estudiante)
+- Control de acceso a menús y pantallas según permisos
+---
+
+## Instalación y ejecucion del proyecto 
+### Requisitos previos
+- Node.js (versión recomendada 18 o superior)
+- Angular CLI
+
+### Instalacin 
 ```bash
-ng serve
+npm install
+ng serve 
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Estructura del proyecto
+- src/app/auth
+- src/app/core
+- src/app/interceptors
+- src/app/pages
+- src/app/student
+- src/app/teacher
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Autora
+Evelyn Ynachaliquin Gómez
