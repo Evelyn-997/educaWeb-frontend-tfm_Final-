@@ -15,9 +15,9 @@ como parte del Trabajo Fin de Máster.
 | Base de datos       | MySQL                                        |
 | Autenticación       | JWT (JSON Web Tokens)                        |
 | Gestión de archivos | Almacenamiento local                         |
-| Notificaciones      | WebSockets / Email                           |
+| Notificaciones      | WebSockets                                   |
 | Testing             | JUnit + Postman (API)                        |
-| Despliegue          | Docker + GitHub                              |
+| Despliegue          | GitHub                                       |
 
 > Este repositorio corresponde únicamente al **Frontend** del sistema.
 
@@ -81,7 +81,7 @@ como parte del Trabajo Fin de Máster.
 - Node.js (versión recomendada 18 o superior)
 - Angular CLI
 
-### Instalacin 
+### Instalación 
 ```bash
 npm install
 ng serve 
