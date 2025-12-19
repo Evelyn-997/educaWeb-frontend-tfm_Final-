@@ -26,7 +26,6 @@ export class HeaderStudent {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private notifyService: NotificationService
   ) {
   }
@@ -41,7 +40,6 @@ export class HeaderStudent {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 
   toggleSidenav() {

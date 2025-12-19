@@ -17,6 +17,8 @@ export class JwtInterceptor implements HttpInterceptor {
     const publicUrls = [
       '/auth/login',
       '/auth/register',
+      '/auth/refresh',
+      '/auth/logout',
       '/auth/password/forgot',
       '/auth/password/reset'
     ];
@@ -25,7 +27,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
     let authReq = req;
     // No añadir token en las URLs publicas
-    //if (req.url.includes('/auth/login') || req.url.includes('/auth/register')) {
     if (publicUrls.some(url => req.url.includes(url))) {
       return next.handle(req);
     }
@@ -41,6 +42,11 @@ export class JwtInterceptor implements HttpInterceptor {
       catchError((error:HttpErrorResponse) => {
         //Si el Token Expiro o es invalido
         if (error.status === 401) {
+          //SI YA SE HA HECHO LOGOUT → NO REFRESH
+          if (!this.authService.canRefresh()) {
+            this.authService.logout(true);
+            return throwError(() => error);
+          }
           //Redirigir al login si el token ha expirado o es invalido
           const refreshToken = localStorage.getItem('refreshToken');
           if (refreshToken) {
@@ -59,15 +65,15 @@ export class JwtInterceptor implements HttpInterceptor {
               }),
               catchError(() => {
                 //Si el refresh falla -> cerrar sesion
-                this.authService.logout();
+                this.authService.logout(true);
                 this.router.navigate(['/login']);
                 return throwError(() => new Error('Session expired. Please log in again.'));
               })
             );
           } else {
             //No hay refresh token -> cerrar sesion
-            this.authService.logout();
-            this.router.navigate(['/login']);
+            this.authService.logout(true);
+            this.router.navigate(['/']);
           }
         }
         //Propagar otros errores

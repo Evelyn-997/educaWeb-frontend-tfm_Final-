@@ -9,6 +9,7 @@ import { teacherRoutes } from './teacher/teacher.routes';
 import { studentRoutes } from './student/student.routes';
 import { NotificationList } from './core/notification/notification-list/notification-list';
 import { ResetPassword } from './auth/components/reset-password/reset-password';
+import { AuthGuard } from './auth/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,7 @@ export const routes: Routes = [
   },
   {
     path: 'teacher',
+    title: "TEACHER",
     children: teacherRoutes
   },
   {
@@ -53,8 +55,11 @@ export const routes: Routes = [
   {
     path:'notifications',
     title: "Notificaciones",
+    canActivate: [AuthGuard],
     component:NotificationList
-  }
+  },
+  { path: '**', redirectTo: '' }
+
 ];
 
 @NgModule({

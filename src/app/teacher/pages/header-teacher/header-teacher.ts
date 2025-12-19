@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent, MatSidenavModule } from "@angular/material/sidenav";
 import {  MatToolbarModule } from "@angular/material/toolbar";
 
@@ -28,14 +28,24 @@ export class HeaderTeacher implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private notifyService: NotificationService
 
   ) { }
 
   ngOnInit(){
-    const user = this.authService.getUserFromToken();
-    this.teacherName = user?.name;
+    this.authService.loggedIn$.subscribe(isLogged => {
+      if (!isLogged) {
+        this.teacherName = '';
+      }
+    });
+
+    this.authService.role$.subscribe(role => {
+      if (role === 'TEACHER') {
+        const user = this.authService.getUserFromToken();
+        this.teacherName = user?.name || '';
+      }
+    });
+
     this.notifyService.notifications$.subscribe(list => {
       this.unreadCount = list.filter(n => !n.read).length;
     });
@@ -49,6 +59,5 @@ export class HeaderTeacher implements OnInit {
   }
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

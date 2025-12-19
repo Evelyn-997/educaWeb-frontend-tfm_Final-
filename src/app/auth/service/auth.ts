@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  catchError, Observable, tap, throwError } from 'rxjs';
+import {  BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 // Add the following import or interface definition for LoginRequest
@@ -32,11 +32,22 @@ export interface RegisterRequest {
 })
 export class AuthService {
   private apiUrl =  'http://localhost:8080/auth';//URL del backend
+  private isLogginOut = false;
+
+  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  loggedIn$ = this.loggedInSubject.asObservable();
+  private roleSubject = new BehaviorSubject<string | null>(this.getUserRole());
+  role$ = this.roleSubject.asObservable();
+
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('accessToken');
+  }
 
   login(credentials: { username: string; password: string }): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(`${this.apiUrl}/login`, credentials)
@@ -46,6 +57,9 @@ export class AuthService {
       localStorage.setItem('username', response.username || '');
       localStorage.setItem('role', response.role || '');
       localStorage.setItem('enrollmentNumber', response.enrollmentNumber || '');
+      //ACtualiza el estado
+      this.loggedInSubject.next(true);
+      this.roleSubject.next(response.role || null);
       }),
     catchError((error) => {
       let message = 'Error desconocido';
@@ -129,6 +143,7 @@ export class AuthService {
   // Obtener el token de acceso actual
   getToken(): string | null {
     const token = localStorage.getItem('accessToken');
+    console.log("TOKEN GET: ",token)
     return token ? token : null;
   }
   getCurrentUser() {
@@ -145,24 +160,38 @@ export class AuthService {
   }
    //LOGOUT
   isLogged():boolean  {
-    //localStorage.removeItem('accessToken');
-   // localStorage.removeItem('refreshToken');
-    return !!localStorage.getItem('accessToken');
+    return this.loggedInSubject.value;
   }
   // Verificar si el usuario está autenticado
   logout(silent:boolean=false):void{
-    const token = localStorage.getItem('accessToken');
+   this.isLogginOut = true;
+    const refreshToken = localStorage.getItem('refreshToken');
+    console.log("Refresh", refreshToken);
 
-    if (token){
-      this.http.post(`${this.apiUrl}/logout`, { token })
-          .subscribe({ error: () => {} });
-    }
-    localStorage.clear();
-    sessionStorage.clear();
+   // if (refreshToken){
+      this.http.post(`${this.apiUrl}/logout`,{refreshToken} )
+          .subscribe({
+            next:()=>{
+              localStorage.clear();
+              sessionStorage.clear();
 
-    if(silent!){
-      this.router.navigate(['/login']);
+              this.loggedInSubject.next(false);
+              this.roleSubject.next(null);
+
+            },
+            error: () => {
+              localStorage.clear();
+              sessionStorage.clear();
+            } });
+          console.log('SESION Cerrada');
+   // }
+
+    if(!silent){
+      this.router.navigateByUrl('/login', { replaceUrl: true });
     }
 
   }
+  canRefresh(): boolean {
+  return !this.isLogginOut && this.loggedInSubject.value;
+}
 }

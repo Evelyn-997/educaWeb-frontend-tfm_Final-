@@ -24,6 +24,7 @@ export class App {
 
   protected readonly title ="EDUCA-WEB";
   role: string | null = null;
+  logged = false;
 
    constructor(
     private authService: AuthService,
@@ -40,6 +41,7 @@ export class App {
       .subscribe(()=>{
         this.updateRole();
     });
+    this.authService.loggedIn$.subscribe(v => this.logged = v);
     //Inicilizar el estado al recargar la pagina
     this.updateRole();
 
@@ -54,16 +56,17 @@ export class App {
   }
   //Metodos auxiliares
   isStudent(): boolean{
-    return this.role === 'STUDENT'
+    return this.logged &&this.role === 'STUDENT'
   }
   isTeacher(): boolean{
-    return this.role === 'TEACHER'
+    return this.logged &&this.role === 'TEACHER'
   }
   isHome(): boolean {
    return this.router.url === '/' || this.router.url.startsWith('/home');
   }
   isLogged(): boolean {
-      return this.authService.isLogged();
+    //return this.authService.isLogged();
+    return this.logged;
   }
 
   /** Se ejecuta al cerrar pestaña o navegador*/

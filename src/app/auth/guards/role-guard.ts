@@ -23,7 +23,7 @@ export class RoleGuard  implements CanActivate {
     }
     //Si el rol del usuario no coincide con el esperado
     if(!expectedRole.includes(userRole)){
-      this.router.navigate(['/unauthorized']); // Redirige a una página de acceso no autorizado
+      this.router.navigate(['/access-dennied']); // Redirige a una página de acceso no autorizado
       return false;
     }
     return true;
